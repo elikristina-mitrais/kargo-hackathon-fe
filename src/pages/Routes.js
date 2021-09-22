@@ -5,15 +5,22 @@ import ListPage from './List';
 import Home from './Home'
 import TruckDetails from './TruckDetails'
 import EditTruck from './EditTruck';
+import Login from './Login'
+import PrivateRoute from '../utils/PrivateRoute';
+import PublicRoute from '../utils/PublicRoute'
+import Dashboard from './Dashboard';
 
 function Routes() {
   return (
     <Switch>
+      <Route exact path='/' component={Login} />
+      <PublicRoute path='/login' component={Login} />
       <Route
-        path="/"
+        path="/home"
         exact
         component={Home}
       />
+      <PrivateRoute exact path='/dashboard' component={Dashboard} />
       <Route
         path="/list"
         exact
