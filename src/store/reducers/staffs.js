@@ -19,6 +19,13 @@ const initialState = {
           errorMsg: action.payload,
         };
       }
+
+      case 'GET_DETAIL': {
+        return {
+          ...state,
+          staff: action.payload,
+        };
+      }
   
       default: {
         return {
