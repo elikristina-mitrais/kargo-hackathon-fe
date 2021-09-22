@@ -3,7 +3,7 @@ import { default as axios } from 'axios'
 export const getList = () => {
   return async (dispatch) => {
     try {
-      const results = await axios.get('https://private-48092-kargohackathon.apiary-mock.com/lists');
+      const results = await axios.get(`${process.env.REACT_APP_SERVER_URL}/lists`);
       console.log(results.data.data.lists)
       dispatch({
         type: 'GET_LIST',

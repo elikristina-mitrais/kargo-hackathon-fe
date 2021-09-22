@@ -3,8 +3,18 @@ import { Container } from 'react-bootstrap';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
+import { Button } from 'react-bootstrap'
+
 
 const { SearchBar } = Search
+
+const defaultSorted = [{
+    dataField: 'id',
+    order: 'asc'
+}];
 
 const columns = [
     {
@@ -19,19 +29,42 @@ const columns = [
         },
     }, {
         dataField: 'name',
-        text: 'name',
+        text: 'Name',
         sort: true,
         headerStyle: {
             backgroundColor: '#e17055',
             color: '#fff',
             textAlign: 'center'
         },
-    },];
-
-const defaultSorted = [{
-    dataField: 'id',
-    order: 'asc'
-}];
+    },
+    {
+        dataField: 'link',
+        text: 'Action',
+        headerStyle: {
+            backgroundColor: '#e17055',
+            color: '#fff',
+            textAlign: 'center'
+        },
+        formatter: (rowContent, row) => {
+            return (
+                <div>
+                    <Link to={"detail/" + row.id}>
+                        <Button className="mr-2">
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                        </Button>
+                    </Link>
+                    <Link to={"edit-detail/" + row.id}>
+                        <Button className="mr-2">
+                            <FontAwesomeIcon icon={faEdit} />
+                        </Button>
+                    </Link>
+                    <Button className="mr-2">
+                        <FontAwesomeIcon icon={faTrash} />
+                    </Button>
+                </div>
+            )
+        }
+    }];
 
 const ListTable = (props) => {
     return (
