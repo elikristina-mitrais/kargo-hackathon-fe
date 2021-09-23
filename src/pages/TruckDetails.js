@@ -17,6 +17,8 @@ class TruckDetails extends Component {
             <React.Fragment>
                 <h1 className="text-center mt-3">Detail Page</h1>
                 <h2>This page is the truck details from list page </h2>
+                <p>this page id is {this.props.detailLists.id}</p>
+                <p>this page name is {this.props.detailLists.name}</p>
             </React.Fragment >
         )
     }
