@@ -17,7 +17,6 @@ class App extends Component {
     return (
       <React.Fragment>
         <BrowserRouter>
-        <Navbar />
           <Switch>
             <Routes />
           </Switch>

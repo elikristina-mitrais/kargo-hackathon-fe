@@ -8,20 +8,18 @@ import EditTruck from './EditTruck';
 import Login from './Login'
 import PrivateRoute from '../utils/PrivateRoute';
 import PublicRoute from '../utils/PublicRoute'
-import Dashboard from './Dashboard';
 
 function Routes() {
   return (
-    <div className="auth-wrapper">
+    
     <Switch>
       <Route exact path='/' component={Login} />
       <PublicRoute path='/login' component={Login} />
-      <Route
+      <PrivateRoute
         path="/home"
         exact
         component={Home}
       />
-      <PrivateRoute exact path='/dashboard' component={Dashboard} />
       <Route
         path="/list"
         exact
@@ -38,7 +36,7 @@ function Routes() {
         component={EditTruck}
       />
     </Switch>
-    </div>
+    
   );
 }
 
