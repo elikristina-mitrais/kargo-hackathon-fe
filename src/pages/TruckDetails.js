@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getListDetails } from '../store/actions/lists'
 
 class TruckDetails extends Component {
     constructor(props) {
@@ -6,16 +8,24 @@ class TruckDetails extends Component {
         this.state = {
         }
     }
+    componentDidMount() {
+        this.props.getListDetails(this.props.match.params.id)
+    }
 
     render() {
         return (
             <React.Fragment>
                 <h1 className="text-center mt-3">Detail Page</h1>
                 <h2>This page is the truck details from list page </h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </React.Fragment >
         )
     }
 }
 
-export default TruckDetails
+const mapStateToProps = state => (
+    { detailLists: state.lists.detailLists }
+)
+
+const mapDispatchToProps = { getListDetails }
+
+export default connect(mapStateToProps, mapDispatchToProps)(TruckDetails)
