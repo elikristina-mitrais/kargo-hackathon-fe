@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { getStaff } from '../../store/actions/staffs'
 import StaffTable from './Table';

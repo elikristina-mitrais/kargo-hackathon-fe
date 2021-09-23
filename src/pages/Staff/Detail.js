@@ -15,7 +15,6 @@ class StaffDetail extends Component {
     }
 
     render() {
-        console.log(this.props.staff)
         return (
             <React.Fragment>
                 <h1 className="text-center mt-3">Staff Detail Page</h1>
