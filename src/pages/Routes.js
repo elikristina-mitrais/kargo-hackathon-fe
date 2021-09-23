@@ -1,6 +1,7 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 
+import history from "../utils/history";
 import ListPage from './List';
 import Home from './Home'
 import TruckDetails from './TruckDetails'
@@ -11,7 +12,7 @@ import PublicRoute from '../utils/PublicRoute'
 
 function Routes() {
   return (
-    
+    <Router history={history}>
     <Switch>
       <Route exact path='/' component={Login} />
       <PublicRoute path='/login' component={Login} />
@@ -36,7 +37,7 @@ function Routes() {
         component={EditTruck}
       />
     </Switch>
-    
+    </Router>
   );
 }
 
