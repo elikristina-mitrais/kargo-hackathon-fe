@@ -12,6 +12,7 @@ import Dashboard from './Dashboard';
 
 function Routes() {
   return (
+    <div className="auth-wrapper">
     <Switch>
       <Route exact path='/' component={Login} />
       <PublicRoute path='/login' component={Login} />
@@ -37,6 +38,7 @@ function Routes() {
         component={EditTruck}
       />
     </Switch>
+    </div>
   );
 }
 

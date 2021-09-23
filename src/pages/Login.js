@@ -10,37 +10,31 @@ function Login(props) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   var apiUrl = '';
-  //const [apiUrl, setApiUrl] = useState('');
-//console.log(role);
-
 
   // handle button click of login form
   const handleLogin = () => {
-      
-    if (role === 'shipper') {
-        apiUrl = 'https://private-anon-225dfebe5c-kargohackathon.apiary-mock.com/auth/shipper';
-    }else{
-        apiUrl = 'https://private-anon-225dfebe5c-kargohackathon.apiary-mock.com/auth/transporter';
-    }
-
+    apiUrl = `${process.env.REACT_APP_SERVER_URL}/auth`;
       setError(null);
       setLoading(true);
       axios.post(apiUrl, { username: username.value, password:password.value}).then(response => {
           setLoading(false);
-          setUserSession(response.data.data.users.token, response.data.data.users.username, response.data.data.users.role);
-          props.history.push('/dashboard');
+
+          if (response.data.error === 1) {
+            setError(response.data.error_msg);
+          } else {
+            setUserSession(response.data.data.users.token, response.data.data.users.username, response.data.data.users.role);
+            props.history.push('/dashboard');
+          }
       }).catch(error => {
-          console.log(error);
-          setLoading(false);
-          if (error.response.error === 1) setError(error.response.error_msg);
-          else setError("Something went wrong");
+          setError("Something went wrong");
       });
     
   }
 
   return (
+    <div className="auth-inner">
     <div>
-      Login<br /><br />
+      <h3>Login</h3><br /><br />
       <div>
         Username<br />
         <input type="text" {...username} autoComplete="new-password" />
@@ -59,6 +53,8 @@ function Login(props) {
       {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
       <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
     </div>
+    </div>
+  
   );
 }
 
