@@ -16,13 +16,8 @@ function Login(props) {
 
   // handle button click of login form
   const handleLogin = () => {
-      
-    if (role === 'shipper') {
-        apiUrl = 'https://private-anon-225dfebe5c-kargohackathon.apiary-mock.com/auth/shipper';
-    }else{
-        apiUrl = 'https://private-anon-225dfebe5c-kargohackathon.apiary-mock.com/auth/transporter';
-    }
-
+//    apiUrl = 'https://private-anon-225dfebe5c-kargohackathon.apiary-mock.com/auth/transporter';
+    apiUrl = 'https://private-anon-225dfebe5c-kargohackathon.apiary-mock.com/auth/shipper';
       setError(null);
       setLoading(true);
       axios.post(apiUrl, { username: username.value, password:password.value}).then(response => {
@@ -39,8 +34,9 @@ function Login(props) {
   }
 
   return (
+    <div className="auth-inner">
     <div>
-      Login<br /><br />
+      <h3>Login</h3><br /><br />
       <div>
         Username<br />
         <input type="text" {...username} autoComplete="new-password" />
@@ -59,6 +55,8 @@ function Login(props) {
       {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
       <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
     </div>
+    </div>
+  
   );
 }
 
